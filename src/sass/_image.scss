@@ -1,0 +1,25 @@
+div.image{
+	display: block;
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	border: 1px solid $tertiary-border-color;
+	background-repeat: no-repeat;
+	background-position: center;
+	overflow: hidden;
+
+	img{
+		width: 100%;
+		height: 100%;
+	}
+}
+
+div.image.store{
+	background-image: url('../img/cafe.svg');
+	background-size: 65%;
+}
+
+div.image.user{
+	background-image: url('../img/profile.svg');
+	background-size: 70%;
+}

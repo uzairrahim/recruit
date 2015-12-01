@@ -1,0 +1,82 @@
+ul.select-list{
+	list-style: none;
+	white-space: nowrap;
+	-webkit-overflow-scrolling: touch;
+
+	li{
+		float: left;
+		clear: both;
+		width: 100%;
+		padding: 5px 0;
+		border-bottom: 1px solid $tertiary-border-color;
+		background-image: url('../img/chevron-right.svg');
+		background-repeat: no-repeat;
+		background-position: right 10px center;
+		background-size: auto 10px;
+		cursor: pointer;
+
+		div.image{
+			display: none;
+		}
+
+		div.text-container{
+			display: block;
+			float: left;
+			margin: $gutter;
+			width: 100%;
+			max-width: calc(100% - #{$gutter*2});
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+
+			div.text{
+				display: block;
+				float: left;
+				clear: both;
+				width: calc(100% - #{$gutter*2});
+				font-family: $secondary-font;
+				overflow: hidden;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+			}
+
+			div.text.line-1{
+				font-size: 16px;
+				color: #444444;
+			}
+
+			div.text.line-2{
+				font-size: 14px;
+				color: #888888;
+			}
+
+			div.text.link{
+				color: $secondary-color;
+			}
+		}
+	}
+
+	li:hover,
+	li.selected{
+		background-color: $hover-bg-color;
+		border-color: $hover-border-color;
+	}
+
+}
+
+ul.select-list.with-image{
+
+	div.image{
+		display: block;
+		float: left;
+		width: $image-small-size;
+		height: $image-small-size;
+		margin: $gutter/2 10px $gutter/2 $gutter;
+		background-color: $image-bg-color;
+	}
+
+	div.text-container{
+		margin: $gutter 0;
+		max-width: calc(100% - #{$image-small-size} - #{$gutter*2});
+	}
+}

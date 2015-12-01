@@ -1,0 +1,51 @@
+h3{
+	color: $primary-color;
+	font-size: 18px;
+	font-weight: normal;
+	cursor: default;
+}
+
+h4{
+	color: $primary-font-color;
+	font-weight: normal;
+	font-size: $primary-font-size;
+
+	span.small{
+		color: $secondary-font-color;
+		font-size: 12px;
+	}
+}
+
+p{
+	font-size: $primary-font-size;
+	color: $secondary-font-color;
+
+	a{
+		font-size: inherit;
+	}
+
+	span.heading{
+		color: $tertiary-font-color;
+	}
+}
+
+p.center{
+	text-align: center;
+}
+
+p.small{
+	font-size: $secondary-font-size;
+}
+
+p.dark{
+	color: $tertiary-font-color;
+}
+
+label{
+	font-size: $primary-font-size;
+}
+
+label.small{
+	color: $secondary-font-color;
+	font-size: $secondary-font-size;
+}

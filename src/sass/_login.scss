@@ -1,0 +1,43 @@
+div.login-form{
+	position: relative;
+    display: block;
+    float: left;
+    clear: both;
+    margin: 0 $gutter;
+    width: calc(100% - #{$gutter*2});
+    white-space: normal;
+
+    div.image{
+		clear: both;
+		width: $image-large-size;
+		height: $image-large-size;
+		margin: $gutter auto 0 auto;
+	}
+    
+    input[type="text"],
+    input[type="email"],
+	input[type="password"]{
+		width: calc(100% - #{$input-horizontal-padding*2});
+		margin-top: $gutter;
+	}
+
+	label.remember-me{
+		display: block;
+		margin-top: $gutter;
+	}
+
+	button.login{
+		width: 100%;
+		margin-top: $gutter;
+		font-size: $secondary-font-size;
+	}
+
+	a.forgot-password{
+		display: block;
+		margin: $gutter 0;
+	}
+
+	p.sign-up{
+		margin-top: $gutter;
+	}
+}

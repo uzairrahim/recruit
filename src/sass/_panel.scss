@@ -1,0 +1,124 @@
+hr{
+	height: 1px;
+	border: none;
+	background-color: $tertiary-border-color;
+}
+
+div.body-panel.search{
+	@include panel(#ffffff,4);
+}
+
+div.body-panel.employer{
+	@include panel(#fdfdfd,3);
+}
+
+div.body-panel.job{
+	@include panel(#fafafa,2);
+}
+
+div.body-panel{
+	
+	div.close{
+		display: block;
+		float: right;
+		clear: both;
+		width: 16px;
+		height: 16px;
+		margin: $gutter;
+		background-image: url('../img/cancel-gray.svg');
+		cursor: pointer;
+	}
+	
+	div.close:hover{
+		background-image: url('../img/cancel-colored.svg');
+	}
+	
+	div.close.hide{
+		display: none;
+	}
+
+	div.panel-wrapper{
+		display: block;
+		float: left;
+		clear: both;
+		padding: 0 $gutter;
+		width: $panel-width - $gutter*2;
+		min-width: $panel-width - $gutter*2;
+		height: calc(100% - #{$gutter*3});
+		overflow: auto;
+
+		div.image{
+			clear: both;
+			width: $image-large-size;
+			height: $image-large-size;
+			margin: 0 auto;
+		}
+
+		div.panel-info-container{
+			display: block;
+			float: left;
+			clear: both;
+			width: 100%;
+			margin: $gutter 0 0 0;
+			
+			h3,h4{
+				white-space: normal;
+			}
+
+			h3.center,h4.center{
+				text-align: center;
+			}
+		}
+
+		div.panel-info-container.no-margin{
+			margin: 0;
+		}
+
+		div.panel-actions-container{
+			display: block;
+			float: left;
+			clear: both;
+			width: 100%;
+			margin: $gutter 0;
+
+			button{
+				float: left;
+				width: calc(50% - #{$gutter/2});
+				
+			}
+
+			button:last-of-type{
+				float: right;
+			}
+		}
+
+		p{
+			float: left;
+			clear: both;
+			margin: 5px 0 0 0;
+			white-space: normal;
+		}
+	}
+
+}
+
+div.body-panel.show{
+	width: $panel-width;
+	border-right: 1px solid $primary-border-color;
+	box-shadow: 2px 0px 10px 0 rgba(0,0,0,0.075);
+}
+
+@media screen and (max-width: $bp-three){
+
+	div.body-panel{
+
+		div.panel-wrapper{
+			width: calc(100% - #{$gutter*2});
+		}
+	}
+
+	div.body-panel.show{
+		width: 100%;
+		border-right: none;
+	}
+}

@@ -1,0 +1,61 @@
+*{
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+}
+
+.animated{ 
+	-webkit-transition: all $transition-speed;
+	-moz-transition: all $transition-speed;
+	-o-transition: all $transition-speed;
+	-ms-transition: all $transition-speed;
+	transition: all $transition-speed;
+	-webkit-backface-visibility: hidden;
+}
+
+.not-animated{
+	-webkit-transition: none;
+	-moz-transition: none;
+	-o-transition: none;
+	-ms-transition: none;
+	transition: none;
+}
+
+.fade{
+	-webkit-transition: opacity $transition-speed;
+	-moz-transition: opacity $transition-speed;
+	-o-transition: opacity $transition-speed;
+	-ms-transition: opacity $transition-speed;
+	transition: opacity $transition-speed;
+	-webkit-backface-visibility: hidden;
+}
+
+.delayed{
+	-moz-transition-delay: $transition-speed;
+    -webkit-transition-delay: $transition-speed;
+    -o-transition-delay: $transition-speed;
+    transition-delay: $transition-speed;
+}
+
+@mixin layout($height, $overflow, $whitespace){
+	position: relative;
+	display: block;
+	float: left;
+	clear: both;
+	width: 100%;
+	min-width: $min-width;
+	height: $height;
+	overflow: $overflow;
+	white-space: $whitespace;
+}
+
+@mixin panel($bg-color, $z-index){
+	position: relative;
+	display: inline-block;
+	width: 0;
+	height: 100%;
+	background-color: $bg-color;
+	white-space: nowrap;
+	overflow: hidden;
+	z-index: $z-index;
+}

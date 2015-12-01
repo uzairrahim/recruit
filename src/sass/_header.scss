@@ -1,0 +1,38 @@
+div.app-head{
+	position: relative;
+	display: block;
+	float: left;
+	clear: both;
+	width: 100%;
+	height: $head-height;
+	background-color: $primary-color;
+
+	div.hamburger{
+		position: relative;
+		display: block;
+		float: left;
+		width: $head-height;
+		height: $head-height;
+		cursor: pointer;
+		background-image: url('../img/hamburger.svg');
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: 20px auto;
+	}
+
+	div.head-login{
+		position: relative;
+		display: block;
+		float: right;
+		margin: 8px 15px 0 0;
+		padding: 4px 18px 6px 18px;
+		color: #ffffff;
+		font-size: 12px;
+		font-family: $secondary-font;
+		text-align: center;
+		background-color: $primary-dark-color;
+		border-radius: 15px;
+		cursor: pointer;
+	}
+
+}

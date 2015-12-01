@@ -1,0 +1,75 @@
+div.app-menu{
+	position: absolute;
+	display: block;
+	float: left;
+	width: 0;
+	height: 100%;
+	background-color: $menu-primary-bg-color;
+	border-right: 1px solid $secondary-border-color;
+	box-shadow: 2px 0px 10px 0 rgba(0,0,0,0.1);
+	white-space: nowrap;
+	overflow: hidden;
+	z-index: 9;	
+
+	div.menu-head{
+		position: relative;
+		display: block;
+		float: left;
+		clear: both;
+		min-width: $menu-width;
+		width: 100%;
+		height: calc(#{$head-height} - 1px);
+		border-bottom: 1px solid $tertiary-border-color;
+		background-color: $menu-secondary-bg-color;
+
+		div.menu-logo{
+			position: relative;
+			display: block;
+			float: left;
+			width: 100px;
+			height: $head-height;
+			background-image: url('../img/hs_recruit.png');
+			background-repeat: no-repeat;
+			background-position: 8px 10px;
+			background-size: 80px auto;
+		}
+
+		div.menu-close{
+			position: relative;
+			display: block;
+			float: right;
+			width: 45px;
+			height: $head-height;
+			background-image: url('../img/chevron-return-gray.svg');
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: 10px auto;
+			cursor: pointer;
+		}
+
+		div.menu-close:hover{
+			background-image: url('../img/chevron-return-colored.svg');
+		}	
+	}
+
+	div.menu-body{
+		position: relative;
+		display: block;
+		float: left;
+		clear: both;
+		min-width: $menu-width;
+		width: 100%;
+		max-height: calc(100% - #{$head-height} - 1px);
+		overflow: auto;
+	}
+}
+
+div.app-menu.show{
+	width: $menu-width;
+}
+
+@media screen and (max-width: $bp-three){
+	div.app-menu.show{
+		width: 100%;
+	}
+}

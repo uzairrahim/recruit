@@ -1,0 +1,71 @@
+div.search-form-container{
+	position: relative;
+	display: block;
+	clear: both;
+	float: left;
+	width: calc(100% - #{$gutter*2});
+	padding: $gutter;
+	background-color: #f8f8f8;
+	border-bottom: 1px solid $tertiary-border-color;
+	white-space: nowrap;
+	overflow: hidden;
+
+	h3{
+		float: left;
+		text-indent: 5px;
+	}
+
+	div.filter-icon{
+		display: block;
+		float: right;
+		width: 16px;
+		height: 16px;
+		cursor: pointer;
+		background-image: url('../img/filter-gray.svg');
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: 16px;
+	}
+
+	div.filter-icon.active,
+	div.filter-icon:hover{
+		background-image: url('../img/filter-colored.svg');
+	}
+
+	input{
+		float: left;
+		clear: both;
+		width: calc(100% - #{$input-horizontal-padding*2};
+		margin-top: $gutter;
+	}
+
+	button{
+		float: left;
+		clear: both;
+		width: 100%;
+		margin-top: $gutter;
+	}
+
+	select{
+		float: left;
+		clear: both;
+		width: calc(100% + 2px);
+		margin-top: $gutter;	
+	}
+}
+
+ul.select-list{
+	position: relative;	
+	clear: both;
+	float: left;
+	width: 100%;
+}
+
+ul.select-list.job-search{
+	height: calc(100% - 195px);
+	overflow: auto;
+}
+
+ul.select-list.employer-job-list{
+	margin: $gutter 0;
+}
