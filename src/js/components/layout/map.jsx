@@ -19,7 +19,9 @@ module.exports = React.createClass({
 				disableDefaultUI: true,
 				zoom: 10
 			}
-			new google.maps.Map(_container, _options);
+			
+			var _map = new google.maps.Map(_container, _options);
+
 		});
 	},
 	render : function(){
