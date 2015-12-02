@@ -5,5 +5,7 @@ var React = require('react'),
 
 module.exports = Reflux.createActions([
 	'getJobs',
-	'getJobTypes'
+	'getJobTypes',
+	'getEmployer',
+	'getJob'
 ]);

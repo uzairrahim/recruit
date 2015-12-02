@@ -3,7 +3,8 @@
 var React = require('react'),
 	Reflux = require('reflux'),
 	Store = require('../../stores/job-search'),
-	Img = require('../image.jsx');
+	Img = require('../image.jsx'),
+	Utils = require('../../utils');
 
 module.exports = React.createClass({
 	mixins : [Reflux.connect(Store)],
@@ -14,19 +15,19 @@ module.exports = React.createClass({
 			</ul>
 		)
 	},
-	_onItemClickHandler : function(){	
-		this.props.onEmployerHandler();
+	_onItemClickHandler : function(index){	
+		this.props.onEmployerHandler(index);
 	},
 	_getJobList : function(){
-		if(this.state.jobs !== null){
-			var _jobs = this.state.jobs.jobs;
-			return _jobs.map(function(job,index){
+		var _employers = this.state.employers;
+		if(_employers.length > 0){			
+			return _employers.map(function(employer,index){
 				return (
-					<li onClick={this._onItemClickHandler} key={index}>
-						{job.employer.logo !== null ? <Img classes='store' source={job.employer.logo.url}/> : <Img classes='store'/>}
+					<li onClick={this._onItemClickHandler.bind(this,index)} key={index}>
+						{employer.logo !== null ? <Img classes='store' source={employer.logo.url}/> : <Img classes='store'/>}
 						<div className='text-container'>
-							<div className='text line-1'>{job.employer.name}</div>
-							<div className='text line-2'>2 jobs - {job.distance} miles away</div>
+							<div className='text line-1'>{employer.name}</div>
+							<div className='text line-2'>{employer.jobPostings.length} job{employer.jobPostings.length === 1 ? '' : 's'} - {employer.distance} miles away</div>
 						</div>
 					</li>
 				)

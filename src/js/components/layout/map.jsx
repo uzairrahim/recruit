@@ -17,7 +17,7 @@ module.exports = React.createClass({
 				},
 				scrollwheel: false,
 				disableDefaultUI: true,
-				zoom: 10
+				zoom: 13
 			}
 			
 			var _map = new google.maps.Map(_container, _options);

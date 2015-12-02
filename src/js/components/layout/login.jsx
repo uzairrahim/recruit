@@ -20,6 +20,6 @@ module.exports = React.createClass({
 		)
 	},
 	_onLoginHandler : function(){
-		Actions.set({logged : true, menu : false});
+		Actions.set({logged : true});
 	}
 });
