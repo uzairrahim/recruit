@@ -11,6 +11,7 @@
   "author": "Uzair Rahim",
   "license": "ISC",
   "dependencies": {
+    "google-maps": "^3.1.0",
     "history": "^1.13.0",
     "jquery": "^2.1.4",
     "react": "^0.14.0",

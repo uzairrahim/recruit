@@ -5,6 +5,7 @@ var React = require('react'),
 	JobSearchForm = require('./job-search-form.jsx'),
 	JobSearchList = require('./job-search-list.jsx'),
 	Store = require('../../stores/job-search'),
+	Map = require('../layout/map.jsx'),
 	Panel = require('../layout/panel.jsx'),
 	Img = require('../image.jsx'),
 	Utils = require('../../utils');
@@ -14,6 +15,7 @@ module.exports = React.createClass({
 	render : function(){
 		return (				
 			<div id='app-body' className='app-body'>
+				{this._getMap()}
 				<Panel id='seach-panel' classes='search show'>
 					<JobSearchForm/>
 					<JobSearchList onEmployerHandler={this._onEmployerHandler}/>
@@ -74,6 +76,11 @@ module.exports = React.createClass({
 				</Panel>
 			</div>
 		)
+	},
+	_getMap : function(){
+		if(!Utils.detectMobile()){
+			return <Map/>
+		}
 	},
 	_getEmployerState : function(){
 		return this.state.employer ? 'show' : '';

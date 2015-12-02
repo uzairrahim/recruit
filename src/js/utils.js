@@ -2,15 +2,23 @@
 
 module.exports = {
 
-	_baseURL : 'http://10.10.12.36:8080/services/services/rest',
-
 	_appConfig : {
 		name : 'HotSchedules Recruit',
-		version : '0.1.0'
-	},
-
-	getBaseURL : function(){
-		return this._baseURL;
+		version : '0.1.0',
+		baseURL : 'http://10.10.12.36:8080/services/services/rest',
+		defaultLocation : {
+			city : 'Austin',
+			country : 'USA',
+			geo : {
+				latitude : '30.2500',
+				longitude : '-97.7500'
+			},
+			state : 'TX',
+			zip : '78701'
+		},
+		google : {
+			mapKey : 'AIzaSyDRIMgVwlD1T9YvqxVOHMGyxQyM1HxXSJs'
+		}
 	},
 
 	getAppName : function(){
@@ -19,6 +27,18 @@ module.exports = {
 
 	getAppVersion : function(){
 		return this._appConfig.version;	
+	},
+
+	getBaseURL : function(){
+		return this._appConfig.baseURL;
+	},
+
+	getDefaultLocation : function(){
+		return this._appConfig.defaultLocation;
+	},
+
+	getGoogleMapsKey : function(){
+		return this._appConfig.google.mapKey;
 	},
 
 	detectMobile : function(){
