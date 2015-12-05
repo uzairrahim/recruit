@@ -10,7 +10,7 @@ module.exports = React.createClass({
 	mixins : [Reflux.connect(Store)],
 	render : function(){
 		return (				
-			<ul id='search-result-list' className='job-search select-list with-image'>
+			<ul id='search-result-list' className={'job-search select-list ' + (this.state.employers.length > 0 ? 'with-image' : '')}>
 				{this._getJobList()}
 			</ul>
 		)
@@ -32,6 +32,15 @@ module.exports = React.createClass({
 					</li>
 				)
 			}.bind(this));
+		}else{
+			return (
+				<li className='not-selectable' key='0'>
+					<div className='text-container'>
+						<div className='text line-1'>No jobs found.</div>
+						<div className='text line-2'>Try refining your search.</div>
+					</div>
+				</li>
+			)
 		}
 	}
 });

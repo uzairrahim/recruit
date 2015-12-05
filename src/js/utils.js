@@ -17,8 +17,33 @@ module.exports = {
 			zip : '78701'
 		},
 		google : {
-			mapKey : 'AIzaSyDRIMgVwlD1T9YvqxVOHMGyxQyM1HxXSJs'
+			mapKey : 'AIzaSyDRIMgVwlD1T9YvqxVOHMGyxQyM1HxXSJs',
+			defaultZoom : 13
 		}
+	},
+
+	detectMobile : function(){
+		return typeof window.orientation !== 'undefined'
+	},
+
+	scrollToLeft : function(element){
+		$(element).animate({
+			scrollLeft : '+=' + $(element)[0].scrollWidth
+		},500)
+	},
+
+	scrollToTop : function(element){
+		$(element).animate({
+			scrollTop : 0
+		},250)
+	},
+
+	isEmpty : function(value){
+		return typeof value === 'undefined' || value === null;
+	},
+
+	isNotEmpty : function(value){
+		return typeof value !== 'undefined' && value !== null;
 	},
 
 	getAppName : function(){
@@ -39,22 +64,6 @@ module.exports = {
 
 	getGoogleMapsKey : function(){
 		return this._appConfig.google.mapKey;
-	},
-
-	detectMobile : function(){
-		return typeof window.orientation !== 'undefined'
-	},
-
-	scrollToLeft : function(element){
-		$(element).animate({
-			scrollLeft : '+=' + $(element)[0].scrollWidth
-		},500)
-	},
-
-	scrollToTop : function(element){
-		$(element).animate({
-			scrollTop : 0
-		},250)
 	},
 
 	getAllJobsObject : function(){
@@ -105,5 +114,31 @@ module.exports = {
 				return 'year'
 			break;
 		}
+	},
+
+	getFormattedAddress : function(location){
+		var _formattedAddress = [];
+
+		if(this.isNotEmpty(location.city)){
+			_formattedAddress.push(location.city);
+		}
+
+		if(this.isNotEmpty(location.state) && this.isEmpty(location.zip)){
+			_formattedAddress.push(location.state);
+		}
+
+		if(this.isNotEmpty(location.zip)){
+			_formattedAddress.push(location.state + ' ' +location.zip);
+		}
+
+		if(this.isNotEmpty(location.country)){
+			_formattedAddress.push(location.country);
+		}
+
+		return _formattedAddress.toString().replace(/,/g, ', ');
+	},
+
+	getDefaultMapZoom : function(){
+		return this._appConfig.google.defaultZoom;
 	}
 }

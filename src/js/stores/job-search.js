@@ -14,7 +14,8 @@ module.exports = Reflux.createStore({
 		return {
 			employerPanel : false,
 			jobPanel : false,
-			location : 'Current Location',
+			formattedAddress : Utils.getFormattedAddress(Utils.getDefaultLocation()),
+			location : Utils.getDefaultLocation(),
 			jobs : null,
 			jobTypes : [],
 			employers: this._employers,
@@ -22,8 +23,15 @@ module.exports = Reflux.createStore({
 			job : null
 		}
 	},
-	onGetJobs : function(callback){
-		JobAPI.getJobs(function(response){
+	onGetJobs : function(location){
+
+		var _invalidLocation = typeof location === 'undefined' || location === null;
+
+		if(_invalidLocation){
+			location = Utils.getDefaultLocation();
+		}
+
+		JobAPI.getJobs(location,function(response){
 			this._employers = Utils.groupJobsByEmployer(response.jobs);
 			this.trigger({'employers' : this._employers});
 		}.bind(this));
@@ -43,4 +51,7 @@ module.exports = Reflux.createStore({
 		var _job = this._employers[this._selectedEmployerIndex].jobPostings[index];
 		this.trigger({'job' : _job});
 	},
+	onSet : function(_options){
+		this.trigger(_options);
+	}
 });

@@ -5,10 +5,11 @@ var React = require('react'),
 	Utils = require('../../utils');
 
 module.exports = React.createClass({
+	_map : null,
 	componentDidMount : function(){
 		GoogleMaps.KEY = Utils.getGoogleMapsKey();
 		GoogleMaps.load(function(){
-			var _location = Utils.getDefaultLocation();
+			var _location = typeof this.props.location !== 'undefined' ? this.props.location : Utils.getDefaultLocation();
 			var _container = document.getElementById('map-container');
 			var _options = {
 				center: {
@@ -17,14 +18,20 @@ module.exports = React.createClass({
 				},
 				scrollwheel: false,
 				disableDefaultUI: true,
-				zoom: 13
+				zoom: Utils.getDefaultMapZoom()
 			}
 			
-			var _map = new google.maps.Map(_container, _options);
+			this._map = new google.maps.Map(_container, _options);
 
-		});
+		}.bind(this));
 	},
 	render : function(){
+
+		if(this._map !== null){
+			var _location = typeof this.props.location !== 'undefined' ? this.props.location : Utils.getDefaultLocation();
+			this._map.setCenter(new google.maps.LatLng( _location.geo.latitude, _location.geo.longitude));
+		}
+		
 		return (				
 			<div id='map-container' className='map-container'>
 				

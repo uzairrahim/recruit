@@ -6,7 +6,6 @@ var React = require('react'),
 module.exports = React.createClass({
 	render : function(){
 		var _employer = this.props.employer;
-		console.log(_employer);
 		return (
 			<div id='employer-card' className='panel-wrapper'>
 				{_employer.logo !== null ? <Img classes='store' source={_employer.logo.url}/> : <Img classes='store'/>}

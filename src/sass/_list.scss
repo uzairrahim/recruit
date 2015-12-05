@@ -62,6 +62,16 @@ ul.select-list{
 		border-color: $hover-border-color;
 	}
 
+	li.not-selectable{
+		cursor: default;
+		background-image: none;
+	}
+
+	li.not-selectable:hover{
+		background-color: transparent;
+		border-color: $tertiary-border-color;
+	}
+
 }
 
 ul.select-list.with-image{

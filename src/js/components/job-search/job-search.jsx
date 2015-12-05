@@ -33,7 +33,7 @@ module.exports = React.createClass({
 	},
 	_getMap : function(){
 		if(!Utils.detectMobile()){
-			return <Map/>
+			return <Map location={this.state.location}/>
 		}
 	},
 	_getEmployer : function(){
