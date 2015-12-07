@@ -10,6 +10,7 @@ module.exports = React.createClass({
 		return (				
 			<div id='login-form' className='login-form'>
 				<Img classes='user' source='http://www.uzairrahim.com/img/uzairrahim.png'/>
+				<p className='center small email'>uzair.rahim@hotschedules.com</p>
 				<input id='password' type='password' placeholder='Password'/>
 				<button id='login-button' className='main login'>Log in with Email</button>
 				<a href='#' className='forgot-password'>Forgot Password?</a>

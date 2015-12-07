@@ -2,6 +2,7 @@
 
 var React = require('react'),
 	GoogleMaps = require('google-maps'),
+	Actions = require('../../actions/job-search'),
 	Utils = require('../../utils');
 
 module.exports = React.createClass({
@@ -22,8 +23,11 @@ module.exports = React.createClass({
 			}
 			
 			this._map = new google.maps.Map(_container, _options);
+			this._map.addListener('dragend', this._onMapCenterChangeHandler)
 
 		}.bind(this));
+
+		
 	},
 	render : function(){
 
@@ -37,5 +41,24 @@ module.exports = React.createClass({
 				
 			</div>
 		)
+	},
+	_onMapCenterChangeHandler : function(){
+		var _geocoder = new google.maps.Geocoder();
+		_geocoder.geocode({'location' : {lat : this._map.center.lat(), lng : this._map.center.lng()}}, function(results, status){
+			if(status === google.maps.GeocoderStatus.OK){
+				var _address = results[0];
+				var _location = {
+					geo : {
+						latitude : _address.geometry.location.lat(),
+						longitude : _address.geometry.location.lng()
+					}
+				}
+				Actions.set({formattedAddress : _address.formatted_address, location : _location});
+				this.props.onMapCenterChangeHandler(_location);
+
+			}else{
+
+			}	
+		}.bind(this));
 	}
 });

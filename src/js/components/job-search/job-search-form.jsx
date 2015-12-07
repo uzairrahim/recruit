@@ -4,10 +4,17 @@ var React = require('react'),
 	Reflux = require('reflux'),
 	GoogleMaps = require('google-maps'),
 	Store = require('../../stores/job-search'),
-	Actions = require('../../actions/job-search');
+	Actions = require('../../actions/job-search'),
+	Utils = require('../../utils');
 
 module.exports = React.createClass({
 	mixins : [Reflux.connect(Store)],
+	_geocoder : null,
+	componentDidMount : function(){
+		GoogleMaps.load(function(){
+			this._geocoder = new google.maps.Geocoder();
+		}.bind(this)); 
+	},
 	componentWillMount : function(){
 		Actions.getJobTypes();
 		Actions.getJobs();
@@ -39,11 +46,8 @@ module.exports = React.createClass({
 	},
 	_onSearchHandler : function(){
 		Actions.set({employerPanel : false, jobPanel : false});
-
-		var _this = this;
-		var _geocoder = new google.maps.Geocoder();
 		var _address = this.state.formattedAddress;
-		_geocoder.geocode({'address' : _address}, function(results, status){
+		this._geocoder.geocode({'address' : _address}, function(results, status){
 			if(status === google.maps.GeocoderStatus.OK){
 				var _address = results[0];
 				var _location = {

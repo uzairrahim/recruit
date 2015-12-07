@@ -33,7 +33,7 @@ module.exports = React.createClass({
 	},
 	_getMap : function(){
 		if(!Utils.detectMobile()){
-			return <Map location={this.state.location}/>
+			return <Map location={this.state.location} onMapCenterChangeHandler={this._onMapCenterChangeHandler}/>
 		}
 	},
 	_getEmployer : function(){
@@ -74,5 +74,9 @@ module.exports = React.createClass({
 	},
 	_onJobCloseHandler : function(){
 		this.setState({jobPanel : false});
+	},
+	_onMapCenterChangeHandler : function(location){
+		JobActions.getJobs(location);
+		this.setState({employerPanel : false, jobPanel : false});
 	}
 });

@@ -40,4 +40,11 @@ div.login-form{
 	p.sign-up{
 		margin-top: $gutter;
 	}
+
+	p.email{
+		margin-top: $gutter;
+		overflow: hidden;
+		white-space: normal;
+		text-overflow: ellipsis;
+	}
 }
