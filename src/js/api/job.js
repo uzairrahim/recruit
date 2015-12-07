@@ -7,7 +7,6 @@ module.exports = {
 	_url : Utils.getBaseURL(),
 
 	getJobTypes : function(callback){
-		var _this = this;
 		$.ajax({
 			type : 'GET',
 			url : Utils.getBaseURL() + '/jobtypes',
@@ -18,11 +17,17 @@ module.exports = {
 		});
 	},
 
-	getJobs : function(location,callback){
-		var _this = this;
+	getJobs : function(jobTypeGUID,location,callback){
+
+		var _url = Utils.getBaseURL() + '/public/jobsearch?latitude='+location.geo.latitude+'&longitude='+location.geo.longitude+'&start=0&rows=25';
+
+		if(jobTypeGUID !== null){
+			_url += '&jobTypeGuid='+jobTypeGUID;
+		}
+
 		$.ajax({
 			type : 'GET',
-			url : Utils.getBaseURL() + '/public/jobsearch?latitude='+location.geo.latitude+'&longitude='+location.geo.longitude+'&start=0&rows=25',
+			url : _url,
 			contentType : 'application/json',
 			success : function(response){
 				callback(response);

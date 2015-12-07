@@ -23,7 +23,13 @@ module.exports = Reflux.createStore({
 			job : null
 		}
 	},
-	onGetJobs : function(location){
+	onGetJobs : function(jobTypeGUID,location){
+
+		var _invalidJobTypeGuid = typeof jobTypeGUID === 'undefined';
+
+		if(_invalidJobTypeGuid){
+			jobTypeGUID = null;
+		}
 
 		var _invalidLocation = typeof location === 'undefined' || location === null;
 
@@ -31,7 +37,7 @@ module.exports = Reflux.createStore({
 			location = Utils.getDefaultLocation();
 		}
 
-		JobAPI.getJobs(location,function(response){
+		JobAPI.getJobs(jobTypeGUID, location,function(response){
 			this._employers = Utils.groupJobsByEmployer(response.jobs);
 			this.trigger({'employers' : this._employers});
 		}.bind(this));

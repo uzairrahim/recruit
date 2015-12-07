@@ -24,7 +24,7 @@ module.exports = React.createClass({
 			<div id='search-form-container' className='search-form-container'>
 				<h3 id='container-heading'>Job Search</h3>
 				<div id='filter-icon' className='filter-icon'></div>
-				<select>
+				<select id='job-types'>
 					{this.state.jobTypes.map(function(type,index){
 						return (
 							<option key={index}>{type.name}</option>
@@ -46,6 +46,10 @@ module.exports = React.createClass({
 	},
 	_onSearchHandler : function(){
 		Actions.set({employerPanel : false, jobPanel : false});
+		var _selectedIndex = document.getElementById('job-types').selectedIndex;
+
+		var _jobTypeGUID = this.state.jobTypes[_selectedIndex].guid;
+
 		var _address = this.state.formattedAddress;
 		this._geocoder.geocode({'address' : _address}, function(results, status){
 			if(status === google.maps.GeocoderStatus.OK){
@@ -57,7 +61,7 @@ module.exports = React.createClass({
 					}
 				}
 				Actions.set({formattedAddress : _address.formatted_address, location : _location});
-				Actions.getJobs(_location);
+				Actions.getJobs(_jobTypeGUID, _location);
 			}else{
 
 			}
