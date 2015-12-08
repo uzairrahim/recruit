@@ -1,0 +1,44 @@
+div.navigation-wrapper{
+	position: relative;
+	display: block;
+	float: left;
+	clear: both;
+	width: 100%;
+
+	div.image{
+		width: 100px;
+		height: 100px;
+		margin: $gutter auto;
+	}
+
+	ul.navigation-list{
+		display: block;
+	    float: left;
+	    clear: both;
+	    width: 100%;
+	    margin: $gutter 0 0 0;
+	    border-top: 1px solid $tertiary-border-color;
+		border-bottom: 1px solid $tertiary-border-color;
+
+	    li{
+			float: left;
+			clear: both;
+			width: 100%;
+			list-style: none;
+			border-bottom: 1px solid $tertiary-border-color;
+
+			a{
+				display: block;
+				float: left;
+				max-width: calc(100% - #{$gutter*2});
+				margin: $gutter;
+				color: $tertiary-font-color;
+				cursor: pointer;
+			}
+	    }
+
+	    li:last-of-type{
+	    	border-bottom: none;
+	    }
+	}
+}

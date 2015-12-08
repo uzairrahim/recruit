@@ -4,6 +4,7 @@ var React = require('react'),
 	Reflux = require('reflux'),
 	Login = require('./login.jsx'),
 	LoginRemembered = require('./login-remembered.jsx'),
+	NavEmployee = require('../nav/employee.jsx'),
 	Session = require('../../stores/session');
 
 module.exports = React.createClass({
@@ -16,12 +17,23 @@ module.exports = React.createClass({
 					<div id='menu-close' className='menu-close' onClick={this._onMenuClickHandler}></div>
 				</div>
 				<div id='menu-body' className='menu-body'>
-					{this.state.logged ? <LoginRemembered/> : <Login/>}
+					{this._getMenu()}
 				</div>
 			</div>
 		)
 	},
 	_onMenuClickHandler : function(){
 		this.props.onMenuClickHandler();
+	},
+	_getMenu : function(){
+		if(this.state.logged){
+			return <NavEmployee/>
+		}else{
+			if(this.state.user == null){
+				return <Login/>
+			}else{
+				return <LoginRemembered/>	
+			}
+		}
 	}
 });

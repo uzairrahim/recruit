@@ -95,6 +95,7 @@ module.exports = React.createClass({
 				});
 
 				_marker.addListener('click', function(){
+					this._map.setCenter(_marker.getPosition());
 					this._onMarkerClickHander(_marker._index);
 				}.bind(this));
 

@@ -46,13 +46,13 @@ module.exports = React.createClass({
 			switch(_errorCode){
 				case 0:
 					var _user = Utils.getUserFromResponse(response);
-					AuthActions.set({logged : true});
 					SessionActions.set({logged : true, user : _user});
+					AuthActions.set({logged : true});
 				break;
 				case 6:
-
+					alert('Invalid emailaddress or password');
 				break;
 			}
-		});
+		}.bind(this));
 	}
 });

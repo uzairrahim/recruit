@@ -25,6 +25,6 @@ module.exports = React.createClass({
 			//
 		});
 
-		SessionActions.set({logged : false});
+		SessionActions.set({logged : false, user : null});
 	}
 });

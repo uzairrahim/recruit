@@ -20,9 +20,9 @@ module.exports = Reflux.createStore({
 			callback(response);
 		});
 	},
-	onLogout : function(){
+	onLogout : function(callback){
 		AuthAPI.logout(function(response){
-			console.log(response);
+			callback(response);
 		});
 	},
 	onSet : function(_options){
