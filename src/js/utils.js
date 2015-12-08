@@ -140,5 +140,16 @@ module.exports = {
 
 	getDefaultMapZoom : function(){
 		return this._appConfig.google.defaultZoom;
+	},
+
+	getUserFromResponse : function(response){
+		return {
+			guid : response.guid,
+			email : response.email,
+			firstname : response.firstname,
+			lastname : response.lastname,
+			returning : response.returning,
+			location : response.location
+		}
 	}
 }

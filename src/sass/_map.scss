@@ -1,8 +1,46 @@
-div.map-container{
+div.map-wrapper{
 	position: absolute;
 	display: block;
 	float: left;
 	width: 100%;
 	height: 100%;
 	z-index: 1;
-}
+
+	div.list-icon{
+		position: absolute;
+		display: none;
+		width: 32px;
+		height: 32px;
+		top: 10px;
+		right: 15px;
+		background-color: #ffffff;
+		border: 1px solid $primary-border-color;
+		border-radius: 50%;
+		background-image: url('../img/list-gray.svg');
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: auto 16px;
+		box-shadow: 2px 0px 10px 0 rgba(0,0,0,0.075);
+		cursor: pointer;
+		z-index: 2;
+	}
+
+	@media screen and (max-width: $bp-three){
+		div.list-icon{
+			display: block;
+		}
+	}
+
+	div.list-icon:hover{
+		background-image: url('../img/list-colored.svg');
+	}
+
+	div.map-container{
+		display: block;
+		float: left;
+		width: 100%;
+		height: 100%;
+		z-index: 1;
+	}
+
+}	

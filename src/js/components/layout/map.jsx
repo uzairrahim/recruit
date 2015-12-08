@@ -7,6 +7,7 @@ var React = require('react'),
 
 module.exports = React.createClass({
 	_map : null,
+	_markers : [],
 	componentDidMount : function(){
 		GoogleMaps.KEY = Utils.getGoogleMapsKey();
 		GoogleMaps.load(function(){
@@ -19,11 +20,12 @@ module.exports = React.createClass({
 				},
 				scrollwheel: false,
 				disableDefaultUI: true,
+				zoomControl:true,
 				zoom: Utils.getDefaultMapZoom()
 			}
 			
 			this._map = new google.maps.Map(_container, _options);
-			this._map.addListener('dragend', this._onMapCenterChangeHandler)
+			this._map.addListener('dragend', this._onMapCenterChangeHandler);
 
 		}.bind(this));
 
@@ -35,12 +37,24 @@ module.exports = React.createClass({
 			var _location = typeof this.props.location !== 'undefined' ? this.props.location : Utils.getDefaultLocation();
 			this._map.setCenter(new google.maps.LatLng( _location.geo.latitude, _location.geo.longitude));
 		}
+
+		this._markers.map(function(marker){
+			marker.setMap(null);
+		});
+
+		this._markers = [];
+
+		this._onAddMarkers();
 		
 		return (				
-			<div id='map-container' className='map-container'>
-				
+			<div id='map-wrapper' className='map-wrapper'>
+				<div id='list-icon' className='list-icon' onClick={this._onListIconClickHandler}></div>
+				<div id='map-container' className='map-container'></div>
 			</div>
 		)
+	},
+	_onListIconClickHandler : function(){
+		this.props.onListIconClickHandler();
 	},
 	_onMapCenterChangeHandler : function(){
 		var _geocoder = new google.maps.Geocoder();
@@ -60,5 +74,38 @@ module.exports = React.createClass({
 
 			}	
 		}.bind(this));
+	},
+	_onAddMarkers : function(){
+
+		var markers = this.props.markers;
+
+		if(markers.length > 0){
+			var _image = 'img/pin.svg';
+			GoogleMaps.load(function(){
+				markers.map(function(marker, index){
+				var _marker = new google.maps.Marker({
+					position : {
+						lat: Number(marker.location.latitude),
+						lng: Number(marker.location.longitude)
+					},
+					map : this._map,
+					icon : _image,
+					title : marker.name,
+					_index: index
+				});
+
+				_marker.addListener('click', function(){
+					this._onMarkerClickHander(_marker._index);
+				}.bind(this));
+
+				this._markers.push(_marker);
+
+				}.bind(this));
+
+			}.bind(this));
+		}
+	},
+	_onMarkerClickHander : function(index){
+		this.props.onMarkerClickHander(index);
 	}
 });

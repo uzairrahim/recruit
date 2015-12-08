@@ -12,12 +12,14 @@ module.exports = Reflux.createStore({
 	_selectedEmployerIndex : null,
 	getInitialState : function(){
 		return {
+			searchPanel : true,
 			employerPanel : false,
 			jobPanel : false,
 			formattedAddress : Utils.getFormattedAddress(Utils.getDefaultLocation()),
 			location : Utils.getDefaultLocation(),
 			jobs : null,
 			jobTypes : [],
+			jobTypeGUID : null,
 			employers: this._employers,
 			employer : null,
 			job : null
@@ -37,7 +39,9 @@ module.exports = Reflux.createStore({
 			location = Utils.getDefaultLocation();
 		}
 
-		JobAPI.getJobs(jobTypeGUID, location,function(response){
+		this.trigger({jobTypeGUID : jobTypeGUID});
+
+		JobAPI.getJobs(jobTypeGUID, location, function(response){
 			this._employers = Utils.groupJobsByEmployer(response.jobs);
 			this.trigger({'employers' : this._employers});
 		}.bind(this));

@@ -18,8 +18,8 @@ module.exports = React.createClass({
 		return (				
 			<div id='app-body' className='app-body'>
 				{this._getMap()}
-				<Panel id='seach-panel' classes='search show'>
-					<JobSearchForm/>
+				<Panel id='seach-panel' classes={'search ' + this._getSearchState()}>
+					<JobSearchForm onMapIconClickHandler={this._onSearchPanelHandler}/>
 					<JobSearchList onEmployerHandler={this._onEmployerHandler}/>
 				</Panel>
 				<Panel id='employer-panel' classes={'employer delayed ' + this._getEmployerState()} closeable={true} onCloseHandler={this._onEmployerCloseHandler}>
@@ -32,9 +32,8 @@ module.exports = React.createClass({
 		)
 	},
 	_getMap : function(){
-		if(!Utils.detectMobile()){
-			return <Map location={this.state.location} onMapCenterChangeHandler={this._onMapCenterChangeHandler}/>
-		}
+		var _employers = this.state.employers;
+		return <Map location={this.state.location} markers={_employers} onMapCenterChangeHandler={this._onMapCenterChangeHandler} onListIconClickHandler={this._onSearchPanelHandler} onMarkerClickHander={this._onEmployerHandler}/>
 	},
 	_getEmployer : function(){
 		if(this.state.employer !== null){
@@ -52,11 +51,18 @@ module.exports = React.createClass({
 			)
 		}
 	},
+	_getSearchState : function(){
+		return this.state.searchPanel ? 'show' : '';
+	},
 	_getEmployerState : function(){
 		return this.state.employerPanel ? 'show' : '';
 	},
 	_getJobState : function(){
 		return this.state.jobPanel ? 'show' : '';
+	},
+	_onSearchPanelHandler : function(){
+		var _state = this.state.searchPanel;
+		this.setState({searchPanel : !_state});
 	},
 	_onEmployerHandler : function(index){
 		JobActions.getEmployer(index);
@@ -76,7 +82,7 @@ module.exports = React.createClass({
 		this.setState({jobPanel : false});
 	},
 	_onMapCenterChangeHandler : function(location){
-		JobActions.getJobs(location);
+		JobActions.getJobs(this.state.jobTypeGUID, location);
 		this.setState({employerPanel : false, jobPanel : false});
 	}
 });

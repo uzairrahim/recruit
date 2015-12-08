@@ -23,6 +23,7 @@ module.exports = React.createClass({
 		return (				
 			<div id='search-form-container' className='search-form-container'>
 				<h3 id='container-heading'>Job Search</h3>
+				<div id='map-icon' className='map-icon' onClick={this._onMapIconClickHandler}></div>
 				<div id='filter-icon' className='filter-icon'></div>
 				<select id='job-types'>
 					{this.state.jobTypes.map(function(type,index){
@@ -35,6 +36,9 @@ module.exports = React.createClass({
 				<button id='search-button' className='primary' onClick={this._onSearchHandler}>Search Jobs</button>
 			</div>
 		)
+	},
+	_onMapIconClickHandler : function(){
+		this.props.onMapIconClickHandler();
 	},
 	_onLocationChangeHandler : function(event){
 		this.setState({formattedAddress : event.target.value});

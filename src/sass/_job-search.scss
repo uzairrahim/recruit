@@ -24,12 +24,36 @@ div.search-form-container{
 		background-image: url('../img/filter-gray.svg');
 		background-position: center;
 		background-repeat: no-repeat;
-		background-size: 16px;
+		background-size: auto 16px;
 	}
 
 	div.filter-icon.active,
 	div.filter-icon:hover{
 		background-image: url('../img/filter-colored.svg');
+	}
+
+	div.map-icon{
+		display: none;
+		float: right;
+		width: 20px;
+		height: 20px;
+		margin-left: 10px;
+		cursor: pointer;
+		background-image: url('../img/map-gray.svg');
+		background-position: 0 -2px;
+		background-repeat: no-repeat;
+		background-size: auto 20px;
+	}
+
+	div.map-icon.active,
+	div.map-icon:hover{
+		background-image: url('../img/map-colored.svg');
+	}
+
+	@media screen and (max-width: $bp-three){
+		div.map-icon{
+			display: block;
+		}
 	}
 
 	input{

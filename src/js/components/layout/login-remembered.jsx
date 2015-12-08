@@ -1,7 +1,8 @@
 'use strict';
 
 var React = require('react'),
-	Actions = require('../../actions/session'),
+	AuthActions = require('../../actions/auth'),
+	SessionActions = require('../../actions/session'),
 	Options = require('./login-options.jsx'),
 	Img = require('../image.jsx');
 
@@ -20,6 +21,10 @@ module.exports = React.createClass({
 		)
 	},
 	_onSwitchAccountHandler : function(){
-		Actions.set({logged : false});
+		AuthActions.logout(function(response){
+			//
+		});
+
+		SessionActions.set({logged : false});
 	}
 });

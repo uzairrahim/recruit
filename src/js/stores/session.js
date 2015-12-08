@@ -10,7 +10,8 @@ module.exports = Reflux.createStore({
 	_filename : 'recruit-session',
 	_data : {
 		logged : false,
-		menu : false
+		menu : false,
+		user : null
 	},
 	_write : function(){
 		localStorage.setItem(this._filename, JSON.stringify(this._data));
