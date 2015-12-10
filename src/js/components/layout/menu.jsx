@@ -2,8 +2,8 @@
 
 var React = require('react'),
 	Reflux = require('reflux'),
-	Login = require('./login.jsx'),
-	LoginRemembered = require('./login-remembered.jsx'),
+	Login = require('../auth/login.jsx'),
+	LoginRemembered = require('../auth/login-remembered.jsx'),
 	NavEmployee = require('../nav/employee.jsx'),
 	Session = require('../../stores/session');
 

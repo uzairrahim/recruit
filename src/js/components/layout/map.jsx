@@ -48,6 +48,7 @@ module.exports = React.createClass({
 		
 		return (				
 			<div id='map-wrapper' className='map-wrapper'>
+				<div id='map-toast' className='map-toast animated'>Loading...</div>
 				<div id='list-icon' className='list-icon' onClick={this._onListIconClickHandler}></div>
 				<div id='map-container' className='map-container'></div>
 			</div>
@@ -108,5 +109,11 @@ module.exports = React.createClass({
 	},
 	_onMarkerClickHander : function(index){
 		this.props.onMarkerClickHander(index);
+	},
+	_onAddToast : function(){
+
+	},
+	_onRemoveToast : function(){
+		
 	}
 });

@@ -17,10 +17,10 @@ module.exports = React.createClass({
 				{this._getUserName()}
 				<ul id='navigation-list' className='navigation-list'>
 					<li>
-						<a>Jobs</a>
+						<a href='#/job-search' onClick={this._onNavItemClickHandler}>Jobs</a>
 					</li>
 					<li>
-						<a>Profile</a>
+						<a href='#/profile' onClick={this._onNavItemClickHandler}>Profile</a>
 					</li>
 					<li>
 						<a onClick={this._onLogoutHandler}>Logout</a>
@@ -36,9 +36,10 @@ module.exports = React.createClass({
 	},
 	_onLogoutHandler : function(){
 		AuthActions.logout(function(response){
-			//
+			SessionActions.set({logged : false, menu : false, user : null});
 		});
-
-		SessionActions.set({logged : false, menu : false, user : null});
+	},
+	_onNavItemClickHandler : function(){
+		SessionActions.set({menu : false});
 	}
 });

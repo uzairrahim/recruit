@@ -25,20 +25,19 @@ div.navigation-wrapper{
 			clear: both;
 			width: 100%;
 			list-style: none;
-			border-bottom: 1px solid $tertiary-border-color;
 
 			a{
 				display: block;
 				float: left;
 				max-width: calc(100% - #{$gutter*2});
 				margin: $gutter;
-				color: $tertiary-font-color;
+				color: $secondary-font-color;
 				cursor: pointer;
 			}
-	    }
 
-	    li:last-of-type{
-	    	border-bottom: none;
+			a:hover{
+				color: $secondary-color;
+			}
 	    }
 	}
 }
