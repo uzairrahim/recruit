@@ -1,24 +1,24 @@
 'use strict';
 
-var React = require('react'),
-	Reflux = require('reflux'),
-	Store = require('../../stores/job-search'),
-	Img = require('../image.jsx'),
-	Utils = require('../../utils');
+import React from 'react';
+import Reflux from 'reflux';
+import Store from '../../stores/job-search';
+import Img from '../image.jsx';
+import Utils from '../../utils';
 
-module.exports = React.createClass({
+var JobSearchList = React.createClass({
 	mixins : [Reflux.connect(Store)],
-	render : function(){
+	render(){
 		return (				
 			<ul id='search-result-list' className={'job-search select-list ' + (this.state.employers.length > 0 ? 'with-image' : '')}>
 				{this._getJobList()}
 			</ul>
 		)
 	},
-	_onItemClickHandler : function(index){	
+	_onItemClickHandler(index){	
 		this.props.onEmployerHandler(index);
 	},
-	_getJobList : function(){
+	_getJobList(){
 		var _employers = this.state.employers;
 		if(_employers.length > 0){			
 			return _employers.map(function(employer,index){
@@ -44,3 +44,5 @@ module.exports = React.createClass({
 		}
 	}
 });
+
+export default JobSearchList;

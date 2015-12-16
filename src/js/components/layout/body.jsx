@@ -1,9 +1,9 @@
 'use strict';
 
-var React = require('react');
+import React = from 'react';
 
-module.exports = React.createClass({
-	render : function(){
+var Body = React.createClass({
+	render(){
 		return (				
 			<div id='app-body' className='app-body'>
 				
@@ -11,3 +11,5 @@ module.exports = React.createClass({
 		)
 	}
 });
+
+export default Body;

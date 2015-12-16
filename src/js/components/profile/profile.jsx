@@ -1,9 +1,9 @@
 'use strict';
 
-var React = require('react');
+import React from 'react';
 
-module.exports = React.createClass({
-	render : function(){
+var Profile = React.createClass({
+	render(){
 		return (				
 			<div id='app-body' className='app-body'>
 				<h1>Profile</h1>
@@ -11,3 +11,5 @@ module.exports = React.createClass({
 		)
 	}
 });
+
+export default Profile;

@@ -1,15 +1,15 @@
 'use strict';
 
-var React = require('react'),
-	Reflux = require('reflux'),
-	Login = require('../auth/login.jsx'),
-	LoginRemembered = require('../auth/login-remembered.jsx'),
-	NavEmployee = require('../nav/employee.jsx'),
-	Session = require('../../stores/session');
+import React from 'react';
+import Reflux from 'reflux';
+import Login from '../auth/login.jsx';
+import LoginRemembered from '../auth/login-remembered.jsx';
+import NavEmployee from '../nav/employee.jsx';
+import Session from '../../stores/session';
 
-module.exports = React.createClass({
+var Menu = React.createClass({
 	mixins : [Reflux.connect(Session)],
-	render : function(){
+	render(){
 		return (				
 			<div id='app-menu' className={'app-menu animated ' + this.props.show}>
 				<div id='menu-head' className='menu-head'>
@@ -22,10 +22,10 @@ module.exports = React.createClass({
 			</div>
 		)
 	},
-	_onMenuClickHandler : function(){
+	_onMenuClickHandler(){
 		this.props.onMenuClickHandler();
 	},
-	_getMenu : function(){
+	_getMenu(){
 		if(this.state.logged){
 			return <NavEmployee/>
 		}else{
@@ -37,3 +37,5 @@ module.exports = React.createClass({
 		}
 	}
 });
+
+export default Menu;

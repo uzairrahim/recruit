@@ -1,13 +1,13 @@
 'use strict';
 
-var React = require('react'),
-	AuthActions = require('../../actions/auth'),
-	SessionActions = require('../../actions/session'),
-	Options = require('./login-options.jsx'),
-	Img = require('../image.jsx');
+import React from 'react';
+import AuthActions from '../../actions/auth';
+import SessionActions from '../../actions/session';
+import Options from './login-options.jsx';
+import Img from '../image.jsx';
 
-module.exports = React.createClass({
-	render : function(){
+var LoginRemembered = React.createClass({
+	render(){
 		return (				
 			<div id='login-form' className='login-form'>
 				<Img classes='user' source='http://www.uzairrahim.com/img/uzairrahim.png'/>
@@ -20,11 +20,11 @@ module.exports = React.createClass({
 			</div>
 		)
 	},
-	_onSwitchAccountHandler : function(){
+	_onSwitchAccountHandler(){
 		AuthActions.logout(function(response){
-			//
+			SessionActions.set({logged : false, user : null});
 		});
-
-		SessionActions.set({logged : false, user : null});
 	}
 });
+
+export default LoginRemembered;

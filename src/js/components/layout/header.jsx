@@ -1,12 +1,12 @@
 'use strict';
 
-var React = require('react'),
-	Reflux = require('reflux'),
-	Session = require('../../stores/session');
+import React from 'react';
+import Reflux from 'reflux';
+import Session from '../../stores/session';
 
-module.exports = React.createClass({
+var Header = React.createClass({
 	mixins : [Reflux.connect(Session)],
-	render : function(){
+	render(){
 		return (				
 			<div id='app-head' className='app-head'>
 				<div id='hamburger' className='hamburger' onClick={this._onMenuClickHandler}></div>
@@ -14,10 +14,10 @@ module.exports = React.createClass({
 			</div>
 		)
 	},
-	_onMenuClickHandler : function(){
+	_onMenuClickHandler(){
 		this.props.onMenuClickHandler();
 	},
-	_getLoginButton : function(){
+	_getLoginButton(){
 		if(!this.state.logged){
 			return(
 				<div id='head-login' className='head-login' onClick={this._onMenuClickHandler}>Log in / Sign up</div>
@@ -25,3 +25,5 @@ module.exports = React.createClass({
 		}
 	}
 });
+
+export default Header;

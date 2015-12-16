@@ -1,10 +1,10 @@
 'use strict';
 
-var React = require('react'),
-	Img = require('../image.jsx');
+import React from 'react';
+import Img from '../image.jsx';
 
-module.exports = React.createClass({
-	render : function(){
+var Employer = React.createClass({
+	render(){
 		var _employer = this.props.employer;
 		return (
 			<div id='employer-card' className='panel-wrapper'>
@@ -30,7 +30,7 @@ module.exports = React.createClass({
 			</div>
 		)
 	},
-	_getJobs : function(){
+	_getJobs(){
 		var _employer = this.props.employer;
 		var _jobs = _employer.jobPostings;
 		if(_jobs.length > 0){
@@ -52,7 +52,9 @@ module.exports = React.createClass({
 			)
 		}
 	},
-	_onJobHandler : function(index){
+	_onJobHandler(index){
 		this.props.onJobHandler(index);
 	},
 });
+
+export default Employer;

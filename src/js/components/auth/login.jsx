@@ -1,16 +1,16 @@
 'use strict';
 
-var React = require('react'),
-	Reflux = require('reflux'),
-	AuthStore = require('../../stores/auth'),
-	AuthActions = require('../../actions/auth'),
-	SessionActions = require('../../actions/session'),
-	Options = require('./login-options.jsx'),
-	Utils = require('../../utils');
+import React from 'react';
+import Reflux from 'reflux';
+import AuthStore from '../../stores/auth';
+import AuthActions from '../../actions/auth';
+import SessionActions from '../../actions/session';
+import Options from './login-options.jsx';
+import Utils from '../../utils';
 
-module.exports = React.createClass({
+var Login = React.createClass({
 	mixins : [Reflux.connect(AuthStore)],
-	render : function(){
+	render(){
 		return (				
 			<div id='login-form' className='login-form'>
 				<input id='emailaddress' type='email' placeholder='Email Address' onChange={this._onEmailChangeHandler}/>
@@ -24,18 +24,18 @@ module.exports = React.createClass({
 			</div>
 		)
 	},
-	_onEmailChangeHandler : function(event){
+	_onEmailChangeHandler(event){
 		this.setState({emailaddress : event.target.value});
 	},
-	_onPasswordChangeHandler : function(event){
+	_onPasswordChangeHandler(event){
 		this.setState({password : event.target.value});
 	},
-	_onPasswordSubmitHandler : function(event){
+	_onPasswordSubmitHandler(event){
 		if(event.keyCode === 13){
 			this._onLoginHandler();
 		}
 	},
-	_onLoginHandler : function(){
+	_onLoginHandler(){
 		var _credentials = {
 			emailaddress : this.state.emailaddress,
 			password : this.state.password
@@ -56,3 +56,5 @@ module.exports = React.createClass({
 		}.bind(this));
 	}
 });
+
+export default Login;

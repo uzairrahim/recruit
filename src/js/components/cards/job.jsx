@@ -1,12 +1,12 @@
 'use strict';
 
-var React = require('react'),
-	Moment = require('moment'),
-	Numeral = require('numeral'),
-	Utils = require('../../utils');
+import React from 'react';
+import Moment from 'moment';
+import Numeral from 'numeral';
+import Utils from '../../utils';
 
-module.exports = React.createClass({
-	render : function(){
+var Job = React.createClass({
+	render(){
 		var _job = this.props.job;
 		return (
 			<div className='panel-wrapper'>
@@ -24,7 +24,7 @@ module.exports = React.createClass({
 			</div>
 		)
 	},
-	_getWage : function(){
+	_getWage(){
 		var _job = this.props.job;
 		var _posted = _job.posted;
 		var _date = Moment(_posted).format('MMM DD, YYYY');
@@ -38,7 +38,7 @@ module.exports = React.createClass({
 			)
 		}
 	},
-	_getApply : function(){
+	_getApply(){
 		var _job = this.props.job;
 		if(_job.currentUserIsCandidate){
 			return(<button id='apply-job' className=''>Applied</button>)
@@ -47,3 +47,5 @@ module.exports = React.createClass({
 		}
 	}
 });
+
+export default Job;

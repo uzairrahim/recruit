@@ -1,16 +1,16 @@
 'use strict';
 
-var React = require('react'),
-	Reflux = require('reflux'),
-	Img = require('../image.jsx'),
-	AuthActions = require('../../actions/auth'),
-	SessionActions = require('../../actions/session'),
-	SessionStore = require('../../stores/session'),
-	Utils = require('../../utils');
+import React from 'react';
+import Reflux from 'reflux';
+import Img from '../image.jsx';
+import AuthActions from '../../actions/auth';
+import SessionActions from '../../actions/session';
+import SessionStore from '../../stores/session';
+import Utils from '../../utils';
 
-module.exports = React.createClass({
+var Employees = React.createClass({
 	mixins : [Reflux.connect(SessionStore)],
-	render : function(){
+	render(){
 		return (
 			<div id='navigation-wrapper' className='navigation-wrapper'>
 				<Img classes='user' source='http://www.uzairrahim.com/img/uzairrahim.png'/>
@@ -29,17 +29,19 @@ module.exports = React.createClass({
 			</div>
 		)
 	},
-	_getUserName : function(){
+	_getUserName(){
 		if(Utils.isNotEmpty(this.state.user)){
 			return <p className='center small email'>{this.state.user.firstname + ' ' + this.state.user.lastname}</p>
 		}
 	},
-	_onLogoutHandler : function(){
+	_onLogoutHandler(){
 		AuthActions.logout(function(response){
 			SessionActions.set({logged : false, menu : false, user : null});
 		});
 	},
-	_onNavItemClickHandler : function(){
+	_onNavItemClickHandler(){
 		SessionActions.set({menu : false});
 	}
 });
+
+export default Employees;

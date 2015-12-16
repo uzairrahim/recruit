@@ -1,34 +1,34 @@
 'use strict';
 
-var React = require('react'),
-	Reflux = require('reflux'),
-	actions = require('../actions/session'),
-	Utils = require('../utils');
+import React from 'react';
+import Reflux from 'reflux';
+import Actions from '../actions/session';
+import Utils from '../utils';
 
-module.exports = Reflux.createStore({
-	listenables : [actions],
+var Session = Reflux.createStore({
+	listenables : [Actions],
 	_filename : 'recruit-session',
 	_data : {
 		logged : false,
 		menu : false,
 		user : null
 	},
-	_write : function(){
+	_write(){
 		localStorage.setItem(this._filename, JSON.stringify(this._data));
 	},
-	_read : function(){
+	_read(){
 		return JSON.parse(localStorage.getItem(this._filename));
 	},	
-	init : function(){
+	init(){
 		this._read() !== null ? this._data = this._read() : this._write();
 	},
-	getInitialState : function(){
+	getInitialState(){
 		return {
 			logged : this._data.logged,
 			menu : this._data.menu
 		}
 	},
-	onSet : function(_options){
+	onSet(_options){
 		
 		for(var key in this._data){
 			if(typeof _options[key] === 'undefined'){
@@ -41,3 +41,5 @@ module.exports = Reflux.createStore({
 		this.trigger(this._data);
 	}
 });
+
+export default Session;

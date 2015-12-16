@@ -1,10 +1,12 @@
 'use strict';
 
-var React = require('react'),
-	Reflux = require('reflux');
+import React from 'react';
+import Reflux from 'reflux';
 
-module.exports = Reflux.createActions([
+var Auth = Reflux.createActions([
 	'login',
 	'logout',
 	'set'
 ]);
+
+export default Auth;

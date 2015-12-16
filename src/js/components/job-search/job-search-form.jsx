@@ -1,25 +1,25 @@
 'use strict';
 
-var React = require('react'),
-	Reflux = require('reflux'),
-	GoogleMaps = require('google-maps'),
-	Store = require('../../stores/job-search'),
-	Actions = require('../../actions/job-search'),
-	Utils = require('../../utils');
+import React from 'react';
+import Reflux from 'reflux';
+import GoogleMaps from 'google-maps';
+import Store from '../../stores/job-search';
+import Actions from '../../actions/job-search';
+import Utils from '../../utils';
 
-module.exports = React.createClass({
+var JobSearchForm = React.createClass({
 	mixins : [Reflux.connect(Store)],
 	_geocoder : null,
-	componentDidMount : function(){
+	componentDidMount(){
 		GoogleMaps.load(function(){
 			this._geocoder = new google.maps.Geocoder();
 		}.bind(this)); 
 	},
-	componentWillMount : function(){
+	componentWillMount(){
 		Actions.getJobTypes();
 		Actions.getJobs();
 	},
-	render : function(){
+	render(){
 		return (				
 			<div id='search-form-container' className='search-form-container'>
 				<h3 id='container-heading'>Job Search</h3>
@@ -37,18 +37,18 @@ module.exports = React.createClass({
 			</div>
 		)
 	},
-	_onMapIconClickHandler : function(){
+	_onMapIconClickHandler(){
 		this.props.onMapIconClickHandler();
 	},
-	_onLocationChangeHandler : function(event){
+	_onLocationChangeHandler(event){
 		this.setState({formattedAddress : event.target.value});
 	},
-	_onLocationSubmit : function(event){
+	_onLocationSubmit(event){
 		if(event.keyCode === 13){
 			this._onSearchHandler();
 		}
 	},
-	_onSearchHandler : function(){
+	_onSearchHandler(){
 		Actions.set({employerPanel : false, jobPanel : false});
 		var _selectedIndex = document.getElementById('job-types').selectedIndex;
 
@@ -72,3 +72,5 @@ module.exports = React.createClass({
 		});
 	}
 });
+
+export default JobSearchForm;

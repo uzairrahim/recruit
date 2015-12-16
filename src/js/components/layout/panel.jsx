@@ -1,9 +1,9 @@
 'use strict';
 
-var React = require('react');
+import React from 'react';
 
-module.exports = React.createClass({
-	render : function(){
+var Panel = React.createClass({
+	render(){
 		return (				
 			<div id={this.props.id} className={'body-panel animated ' + this.props.classes}>
 				<div className={'close ' + this._getCloseableState()} onClick={this._onCloseHandler}></div>
@@ -11,10 +11,12 @@ module.exports = React.createClass({
 			</div>
 		)
 	},
-	_onCloseHandler : function(){
+	_onCloseHandler(){
 		this.props.onCloseHandler();
 	},
-	_getCloseableState : function(){
+	_getCloseableState(){
 		return this.props.closeable ? '' : 'hide'
 	}
 });
+
+export default Panel;

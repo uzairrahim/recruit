@@ -1,12 +1,12 @@
 'use strict';
 
-var Utils = require('../utils');
+import Utils from '../utils';
 
-module.exports = {
+export default {
 
 	_url : Utils.getBaseURL(),
 
-	getJobTypes : function(callback){
+	getJobTypes(callback){
 		var _this = this;
 		$.ajax({
 			type : 'GET',
@@ -17,7 +17,7 @@ module.exports = {
 		});
 	},
 
-	getJobs : function(jobTypeGUID,location,callback){
+	getJobs(jobTypeGUID,location,callback){
 
 		var _url = this._url + '/public/jobsearch?latitude='+location.geo.latitude+'&longitude='+location.geo.longitude+'&start=0&rows=25';
 

@@ -1,12 +1,14 @@
 'use strict';
 
-var React = require('react'),
-	Reflux = require('reflux');
+import React from 'react';
+import Reflux from 'reflux';
 
-module.exports = Reflux.createActions([
+var JobSearch = Reflux.createActions([
 	'set',
 	'getJobs',
 	'getJobTypes',
 	'getEmployer',
 	'getJob'
 ]);
+
+export default JobSearch;

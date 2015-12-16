@@ -1,9 +1,9 @@
 'use strict';
 
-var React = require('react');
+import React from 'react';
 
-module.exports = React.createClass({
-	render : function(){
+var LoginOptions = React.createClass({
+	render(){
 		return (				
 			<div id='login-options' className='login-options'>
 				<hr/>
@@ -15,3 +15,5 @@ module.exports = React.createClass({
 		)
 	}
 });
+
+export default LoginOptions;

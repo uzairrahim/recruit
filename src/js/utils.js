@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = {
+export default {
 
 	_appConfig : {
 		name : 'HotSchedules Recruit',

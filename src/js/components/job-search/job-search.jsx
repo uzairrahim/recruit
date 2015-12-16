@@ -1,20 +1,20 @@
 'use strict';
 
-var React = require('react'),
-	Reflux = require('reflux'),
-	JobSearchForm = require('./job-search-form.jsx'),
-	JobSearchList = require('./job-search-list.jsx'),
-	JobStore = require('../../stores/job-search'),
-	JobActions = require('../../actions/job-search'),
-	Map = require('../layout/map.jsx'),
-	Panel = require('../layout/panel.jsx'),
-	EmployerCard = require('../cards/employer.jsx'),
-	JobCard = require('../cards/job.jsx'),
-	Utils = require('../../utils');
+import React from 'react';
+import Reflux from 'reflux';
+import JobSearchForm from './job-search-form.jsx';
+import JobSearchList from './job-search-list.jsx';
+import JobStore from '../../stores/job-search';
+import JobActions from '../../actions/job-search';
+import MapView from '../layout/map.jsx';
+import Panel from '../layout/panel.jsx';
+import EmployerCard from '../cards/employer.jsx';
+import JobCard from '../cards/job.jsx';
+import Utils from '../../utils';
 
-module.exports = React.createClass({
+var JobSearch = React.createClass({
 	mixins : [Reflux.connect(JobStore)],
-	render : function(){
+	render(){
 		return (				
 			<div id='app-body' className='app-body'>
 				{this._getMap()}
@@ -31,11 +31,11 @@ module.exports = React.createClass({
 			</div>
 		)
 	},
-	_getMap : function(){
+	_getMap(){
 		var _employers = this.state.employers;
-		return <Map location={this.state.location} markers={_employers} onMapCenterChangeHandler={this._onMapCenterChangeHandler} onListIconClickHandler={this._onSearchPanelHandler} onMarkerClickHander={this._onEmployerHandler}/>
+		return <MapView location={this.state.location} markers={_employers} onMapCenterChangeHandler={this._onMapCenterChangeHandler} onListIconClickHandler={this._onSearchPanelHandler} onMarkerClickHander={this._onEmployerHandler}/>
 	},
-	_getEmployer : function(){
+	_getEmployer(){
 		if(this.state.employer !== null){
 			var _employer = this.state.employer;
 			return(
@@ -43,7 +43,7 @@ module.exports = React.createClass({
 			)
 		}
 	},
-	_getJob : function(){
+	_getJob(){
 		if(this.state.job !== null){
 			var _job = this.state.job;
 			return(
@@ -51,38 +51,40 @@ module.exports = React.createClass({
 			)
 		}
 	},
-	_getSearchState : function(){
+	_getSearchState(){
 		return this.state.searchPanel ? 'show' : '';
 	},
-	_getEmployerState : function(){
+	_getEmployerState(){
 		return this.state.employerPanel ? 'show' : '';
 	},
-	_getJobState : function(){
+	_getJobState(){
 		return this.state.jobPanel ? 'show' : '';
 	},
-	_onSearchPanelHandler : function(){
+	_onSearchPanelHandler(){
 		var _state = this.state.searchPanel;
 		this.setState({searchPanel : !_state});
 	},
-	_onEmployerHandler : function(index){
+	_onEmployerHandler(index){
 		JobActions.getEmployer(index);
 		this.setState({employerPanel : true, jobPanel : false});
 		Utils.scrollToLeft(document.getElementById('app-body'));
 		Utils.scrollToTop(document.getElementById('employer-card'));
 	},
-	_onEmployerCloseHandler : function(){
+	_onEmployerCloseHandler(){
 		this.setState({employerPanel : false, jobPanel : false});
 	},
-	_onJobHandler : function(index){
+	_onJobHandler(index){
 		JobActions.getJob(index);
 		this.setState({jobPanel : true});
 		Utils.scrollToLeft(document.getElementById('app-body'));
 	},
-	_onJobCloseHandler : function(){
+	_onJobCloseHandler(){
 		this.setState({jobPanel : false});
 	},
-	_onMapCenterChangeHandler : function(location){
+	_onMapCenterChangeHandler(location){
 		JobActions.getJobs(this.state.jobTypeGUID, location);
 		this.setState({employerPanel : false, jobPanel : false});
 	}
 });
+
+export default JobSearch;

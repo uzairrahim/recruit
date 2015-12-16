@@ -1,14 +1,14 @@
 'use strict';
 
-var React = require('react'),
-	GoogleMaps = require('google-maps'),
-	Actions = require('../../actions/job-search'),
-	Utils = require('../../utils');
+import React from 'react';
+import GoogleMaps from 'google-maps';
+import Actions from '../../actions/job-search';
+import Utils from '../../utils';
 
-module.exports = React.createClass({
+var MapView = React.createClass({
 	_map : null,
 	_markers : [],
-	componentDidMount : function(){
+	componentDidMount(){
 		GoogleMaps.KEY = Utils.getGoogleMapsKey();
 		GoogleMaps.load(function(){
 			var _location = typeof this.props.location !== 'undefined' ? this.props.location : Utils.getDefaultLocation();
@@ -31,7 +31,7 @@ module.exports = React.createClass({
 
 		
 	},
-	render : function(){
+	render(){
 
 		if(this._map !== null){
 			var _location = typeof this.props.location !== 'undefined' ? this.props.location : Utils.getDefaultLocation();
@@ -54,10 +54,10 @@ module.exports = React.createClass({
 			</div>
 		)
 	},
-	_onListIconClickHandler : function(){
+	_onListIconClickHandler(){
 		this.props.onListIconClickHandler();
 	},
-	_onMapCenterChangeHandler : function(){
+	_onMapCenterChangeHandler(){
 		var _geocoder = new google.maps.Geocoder();
 		_geocoder.geocode({'location' : {lat : this._map.center.lat(), lng : this._map.center.lng()}}, function(results, status){
 			if(status === google.maps.GeocoderStatus.OK){
@@ -76,7 +76,7 @@ module.exports = React.createClass({
 			}	
 		}.bind(this));
 	},
-	_onAddMarkers : function(){
+	_onAddMarkers(){
 
 		var markers = this.props.markers;
 
@@ -107,13 +107,15 @@ module.exports = React.createClass({
 			}.bind(this));
 		}
 	},
-	_onMarkerClickHander : function(index){
+	_onMarkerClickHander(index){
 		this.props.onMarkerClickHander(index);
 	},
-	_onAddToast : function(){
+	_onAddToast(){
 
 	},
-	_onRemoveToast : function(){
+	_onRemoveToast(){
 		
 	}
 });
+
+export default MapView;

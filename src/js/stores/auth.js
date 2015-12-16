@@ -1,31 +1,33 @@
 'use strict';
 
-var React = require('react'),
-	Reflux = require('reflux'),
-	Actions = require('../actions/auth'),
-	AuthAPI = require('../api/auth'),
-	Utils = require('../utils');
+import React from 'react';
+import Reflux from 'reflux';
+import Actions from '../actions/auth';
+import AuthAPI from '../api/auth';
+import Utils from '../utils';
 
-module.exports = Reflux.createStore({
+var Auth = Reflux.createStore({
 	listenables : [Actions],
-	getInitialState : function(){
+	getInitialState(){
 		return {
 			logged : false,
 			emailaddress : null,
 			password : null
 		}
 	},
-	onLogin : function(credentials,callback){
+	onLogin(credentials,callback){
 		AuthAPI.login(credentials,function(response){
 			callback(response);
 		});
 	},
-	onLogout : function(callback){
+	onLogout(callback){
 		AuthAPI.logout(function(response){
 			callback(response);
 		});
 	},
-	onSet : function(_options){
+	onSet(_options){
 		this.trigger(_options);
 	}
 });
+
+export default Auth;

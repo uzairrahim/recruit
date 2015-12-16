@@ -1,16 +1,16 @@
 'use strict';
 
-var React = require('react'),
-	Reflux = require('reflux'),
-	Actions = require('../actions/job-search'),
-	JobAPI = require('../api/job'),
-	Utils = require('../utils');
+import React from 'react';
+import Reflux from 'reflux';
+import Actions from '../actions/job-search';
+import JobAPI from '../api/job';
+import Utils from '../utils';
 
-module.exports = Reflux.createStore({
+var JobSearch = Reflux.createStore({
 	listenables : [Actions],
 	_employers : [],
 	_selectedEmployerIndex : null,
-	getInitialState : function(){
+	getInitialState(){
 		return {
 			searchPanel : true,
 			employerPanel : false,
@@ -25,7 +25,7 @@ module.exports = Reflux.createStore({
 			job : null
 		}
 	},
-	onGetJobs : function(jobTypeGUID,location){
+	onGetJobs(jobTypeGUID,location){
 
 		var _invalidJobTypeGuid = typeof jobTypeGUID === 'undefined';
 
@@ -46,22 +46,24 @@ module.exports = Reflux.createStore({
 			this.trigger({'employers' : this._employers});
 		}.bind(this));
 	},
-	onGetJobTypes : function(){
+	onGetJobTypes(){
 		JobAPI.getJobTypes(function(data){
 			data.unshift(Utils.getAllJobsObject());
 			this.trigger({'jobTypes' : data});
 		}.bind(this));
 	},
-	onGetEmployer : function(index){
+	onGetEmployer(index){
 		var _employer = this._employers[index];
 		this._selectedEmployerIndex = index;
 		this.trigger({'employer' : _employer});
 	},
-	onGetJob : function(index){
+	onGetJob(index){
 		var _job = this._employers[this._selectedEmployerIndex].jobPostings[index];
 		this.trigger({'job' : _job});
 	},
-	onSet : function(_options){
+	onSet(_options){
 		this.trigger(_options);
 	}
 });
+
+export default JobSearch;

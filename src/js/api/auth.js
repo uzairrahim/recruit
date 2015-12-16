@@ -1,12 +1,12 @@
 'use strict';
 
-var Utils = require('../utils');
+import Utils from '../utils';
 
-module.exports = {
+export default {
 
 	_url : Utils.getBaseURL(),
 
-	login : function(credentials,callback){
+	login(credentials,callback){
 		$.ajax({
 			type : 'POST',
 			url : this._url + '/auth/login',
@@ -18,7 +18,7 @@ module.exports = {
 		});
 	},
 
-	logout : function(callback){
+	logout(callback){
 		$.ajax({
 			type : 'POST',
 			url : this._url + '/spring/authenticate/logout'
