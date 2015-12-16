@@ -1,9 +1,10 @@
 'use strict';
 
 import React from 'react';
-import Img from '../image.jsx';
+import Img from '../elements/image.jsx';
 
-var Employer = React.createClass({
+class Employer extends React.Component{
+
 	render(){
 		var _employer = this.props.employer;
 		return (
@@ -29,7 +30,8 @@ var Employer = React.createClass({
 				</p>
 			</div>
 		)
-	},
+	}
+
 	_getJobs(){
 		var _employer = this.props.employer;
 		var _jobs = _employer.jobPostings;
@@ -51,10 +53,12 @@ var Employer = React.createClass({
 				</ul>
 			)
 		}
-	},
+	}
+
 	_onJobHandler(index){
 		this.props.onJobHandler(index);
-	},
-});
+	}
+
+}
 
 export default Employer;

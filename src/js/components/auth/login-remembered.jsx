@@ -4,9 +4,10 @@ import React from 'react';
 import AuthActions from '../../actions/auth';
 import SessionActions from '../../actions/session';
 import Options from './login-options.jsx';
-import Img from '../image.jsx';
+import Img from '../elements/image.jsx';
 
-var LoginRemembered = React.createClass({
+class LoginRemembered extends React.Component{
+
 	render(){
 		return (				
 			<div id='login-form' className='login-form'>
@@ -19,12 +20,14 @@ var LoginRemembered = React.createClass({
 				<Options/>
 			</div>
 		)
-	},
+	}
+
 	_onSwitchAccountHandler(){
 		AuthActions.logout(function(response){
 			SessionActions.set({logged : false, user : null});
 		});
 	}
-});
+
+}
 
 export default LoginRemembered;

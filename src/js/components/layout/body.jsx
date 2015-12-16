@@ -2,7 +2,8 @@
 
 import React = from 'react';
 
-var Body = React.createClass({
+class Body extends React.Component{
+
 	render(){
 		return (				
 			<div id='app-body' className='app-body'>
@@ -10,6 +11,7 @@ var Body = React.createClass({
 			</div>
 		)
 	}
-});
+
+}
 
 export default Body;

@@ -3,7 +3,7 @@
 import React from 'react';
 import Reflux from 'reflux';
 import Store from '../../stores/job-search';
-import Img from '../image.jsx';
+import Img from '../elements/image.jsx';
 import Utils from '../../utils';
 
 var JobSearchList = React.createClass({

@@ -2,7 +2,8 @@
 
 import React from 'react';
 
-var LoginOptions = React.createClass({
+class LoginOptions extends React.Component{
+
 	render(){
 		return (				
 			<div id='login-options' className='login-options'>
@@ -14,6 +15,7 @@ var LoginOptions = React.createClass({
 			</div>
 		)
 	}
-});
+	
+}
 
 export default LoginOptions;

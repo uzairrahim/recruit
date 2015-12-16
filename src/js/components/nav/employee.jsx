@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Reflux from 'reflux';
-import Img from '../image.jsx';
+import Img from '../elements/image.jsx';
 import AuthActions from '../../actions/auth';
 import SessionActions from '../../actions/session';
 import SessionStore from '../../stores/session';

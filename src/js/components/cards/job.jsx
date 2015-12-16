@@ -5,7 +5,8 @@ import Moment from 'moment';
 import Numeral from 'numeral';
 import Utils from '../../utils';
 
-var Job = React.createClass({
+class Job extends React.Component{
+
 	render(){
 		var _job = this.props.job;
 		return (
@@ -23,7 +24,8 @@ var Job = React.createClass({
 				</p>
 			</div>
 		)
-	},
+	}
+
 	_getWage(){
 		var _job = this.props.job;
 		var _posted = _job.posted;
@@ -37,7 +39,8 @@ var Job = React.createClass({
 				<h4><span className='small'>Posted: {_date}</span></h4>
 			)
 		}
-	},
+	}
+
 	_getApply(){
 		var _job = this.props.job;
 		if(_job.currentUserIsCandidate){
@@ -46,6 +49,7 @@ var Job = React.createClass({
 			return(<button id='apply-job' className='primary'>Apply</button>)
 		}
 	}
-});
+
+}
 
 export default Job;

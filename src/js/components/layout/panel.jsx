@@ -2,7 +2,13 @@
 
 import React from 'react';
 
-var Panel = React.createClass({
+class Panel extends React.Component{
+
+	constructor(){
+		super();
+		this._onCloseHandler = this._onCloseHandler.bind(this);
+	}
+	
 	render(){
 		return (				
 			<div id={this.props.id} className={'body-panel animated ' + this.props.classes}>
@@ -10,13 +16,16 @@ var Panel = React.createClass({
 				{this.props.children}
 			</div>
 		)
-	},
+	}
+
 	_onCloseHandler(){
 		this.props.onCloseHandler();
-	},
+	}
+
 	_getCloseableState(){
 		return this.props.closeable ? '' : 'hide'
 	}
-});
+
+}
 
 export default Panel;

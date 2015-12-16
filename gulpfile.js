@@ -1,19 +1,18 @@
-var gulp = require('gulp'), 
+var gulp = require('gulp'),
 	ignore = require('gulp-ignore'),
 	jasmine = require('gulp-jasmine'),
+	jasmine_config = require('./jasmine.config'),
 	minifyCSS = require('gulp-minify-css'),
-	react = require('gulp-react'),
 	rename = require('gulp-rename'),
 	rimraf = require('gulp-rimraf'),
 	sass = require('gulp-sass'),
 	uglify = require('gulp-uglify'),
 	util = require('gulp-util'),
-	watch = require('gulp-watch')
-	webpack = require('gulp-webpack');
-	webpack_config = require('./webpack.config')
+	webpack = require('gulp-webpack'),
+	webpack_config = require('./webpack.config');
 
 gulp.task('default', ['build']);
-gulp.task('build', ['html', 'img', 'sass', 'react', 'webpack', 'watch']);
+gulp.task('build', ['html', 'img', 'sass', 'webpack']);
 gulp.task('unbuild', ['clean']);
 
 // Remove dist directory
@@ -42,10 +41,7 @@ gulp.task('sass', function(){
 	.pipe(gulp.dest('./dist/css/'));
 });
 
-gulp.task('react', function(){
-
-});
-
+// Create bundles and copy the files to dist directory
 gulp.task('webpack', function(){
 	gulp.src('./src/js/main.js')
 	.pipe(webpack(webpack_config))
@@ -53,12 +49,8 @@ gulp.task('webpack', function(){
 	.pipe(gulp.dest('./dist/js/'));
 });
 
-// Watch for changes
-gulp.task('watch', function(){
-
-});
-
-// Run test scripts
+// Run unit test scripts
 gulp.task('test', function(){
-
+	gulp.src('./tests/**/*.js')
+	.pipe(jasmine(jasmine_config));
 });

@@ -2,7 +2,8 @@
 
 import React from 'react';
 
-var Profile = React.createClass({
+class Profile extends React.Component{
+
 	render(){
 		return (				
 			<div id='app-body' className='app-body'>
@@ -10,6 +11,7 @@ var Profile = React.createClass({
 			</div>
 		)
 	}
-});
+
+}
 
 export default Profile;
